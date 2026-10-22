@@ -1,4 +1,5 @@
 // ----- Dessine la ville (immeubles + lampadaires) -----
+const API_URL = "https://mern-imane-khorchef-3ghz.vercel.app";
 const city = document.getElementById('city');
 
 // [hauteur de l'immeuble en px, nombre de lignes de fenêtres]
@@ -33,7 +34,11 @@ buildings.forEach((item) => {
   b.appendChild(document.createElement('b')); // la porte
   city.appendChild(b);
 });
-
+const statusEl = document.getElementById('api-status');
+fetch(API_URL + "/api/health")
+  .then((res) => res.json())
+  .then((data) => { statusEl.textContent = "serveur : " + (data.status === "ok" ? "connecté ✓" : "erreur"); })
+  .catch(() => { statusEl.textContent = "serveur : injoignable"; });
 // ----- Apparition douce des cartes -----
 const items = document.querySelectorAll('.reveal');
 
