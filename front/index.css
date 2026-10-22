@@ -1,0 +1,223 @@
+:root {
+  --pink: #e8a7b6;
+  --pink-deep: #d68ea1;
+  --ink: #5b3a47;
+  --cream: #fbefe6;
+  --blush: #f3d4dc;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Patrick Hand", "Gochi Hand", "Comic Sans MS", cursive;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.25), transparent 40%),
+    var(--pink);
+  position: relative;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+/* ---------- Décorations ---------- */
+.deco {
+  position: absolute;
+  color: var(--ink);
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.star {
+  top: 38vh;
+  left: 14vw;
+  font-size: 3rem;
+  color: #8a6676;
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+.phones {
+  top: 52vh;
+  left: 8vw;
+  font-size: 2.6rem;
+  filter: grayscale(0.4);
+  animation: float 5s ease-in-out infinite;
+}
+
+.butterfly {
+  top: 14vh;
+  right: 10vw;
+  width: 90px;
+  animation: float 4s ease-in-out infinite;
+}
+
+.swirl {
+  top: 34vh;
+  right: 26vw;
+  width: 60px;
+  animation: float 6s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50%      { transform: translateY(-14px) rotate(3deg); }
+}
+
+@keyframes twinkle {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.75; }
+  50%      { transform: scale(1.15) rotate(12deg); opacity: 1; }
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  text-align: center;
+  padding: 14vh 6vw 8vh;
+}
+
+h1 {
+  font-family: "Gochi Hand", "Patrick Hand", cursive;
+  font-weight: normal;
+  font-size: clamp(2rem, 6.5vw, 4rem);
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+.or {
+  font-size: 1.6rem;
+  margin: 18px 0 6px;
+  opacity: 0.8;
+}
+
+.sub {
+  max-width: 420px;
+  margin: 0 auto 30px;
+  font-size: 1.15rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 32px;
+  border: 2px dashed var(--ink);
+  border-radius: 999px;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 1.15rem;
+  background: rgba(251, 239, 230, 0.4);
+  transition: background 0.2s, transform 0.2s;
+}
+.btn:hover { background: var(--cream); transform: rotate(-2deg) scale(1.05); }
+
+/* ---------- Cartes ---------- */
+.mood {
+  padding: 6vh 6vw 10vh;
+  text-align: center;
+}
+
+.mood h2 {
+  font-family: "Gochi Hand", cursive;
+  font-weight: normal;
+  font-size: 2rem;
+  margin-bottom: 34px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 26px;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.card {
+  padding: 26px 22px;
+  background: var(--cream);
+  border: 2px solid var(--ink);
+  border-radius: 6px 22px 6px 22px;
+  box-shadow: 5px 5px 0 rgba(91, 58, 71, 0.25);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.card:nth-child(2) { transform: rotate(1.5deg); }
+.card:nth-child(1) { transform: rotate(-1.5deg); }
+.card:hover { transform: rotate(0) translateY(-5px); box-shadow: 8px 8px 0 rgba(91, 58, 71, 0.3); }
+
+.card h3 {
+  font-family: "Gochi Hand", cursive;
+  font-weight: normal;
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
+
+/* Animation d'apparition (utilisée par script.js) */
+.reveal { opacity: 0; transition: opacity 0.7s ease, transform 0.25s, box-shadow 0.25s; }
+.reveal.visible { opacity: 1; }
+
+/* ---------- Ville dessinée en CSS ---------- */
+.city {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 10px;
+  padding: 0 4vw;
+  overflow: hidden;
+}
+
+.building {
+  background: var(--cream);
+  border: 2px solid var(--ink);
+  border-bottom: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 9px;
+  padding: 12px 9px 0;
+  align-content: start;
+}
+
+.building i {
+  height: 16px;
+  border: 1.5px solid var(--ink);
+  border-radius: 2px;
+  background: var(--blush);
+}
+
+.building b {
+  grid-column: 2;
+  height: 34px;
+  margin-top: auto;
+  border: 1.5px solid var(--ink);
+  border-bottom: none;
+  border-radius: 14px 14px 0 0;
+  background: var(--pink-deep);
+}
+
+.lamp {
+  width: 3px;
+  height: 80px;
+  background: var(--ink);
+  position: relative;
+  flex-shrink: 0;
+}
+.lamp::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: -7px;
+  width: 17px;
+  height: 11px;
+  border: 2px solid var(--ink);
+  border-radius: 50% 50% 0 0;
+  background: var(--cream);
+}
+
+footer {
+  text-align: center;
+  padding: 22px 6vw;
+  font-size: 1rem;
+  background: var(--ink);
+  color: var(--cream);
+}
+
+@media (max-width: 600px) {
+  .swirl, .phones { display: none; }
+  .butterfly { width: 60px; }
+}
